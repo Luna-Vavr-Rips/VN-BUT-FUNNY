@@ -1,3 +1,3 @@
 # VN-BUT-FUNNY
 
-dont question my insanity
+dont question my sanity
