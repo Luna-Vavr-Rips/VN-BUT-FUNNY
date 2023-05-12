@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3trg6adhrb6x"]
+
+[ext_resource type="Texture2D" uid="uid://dsse14dpniv1a" path="res://vavr s+.png" id="1_nyicu"]
+[ext_resource type="Texture2D" uid="uid://4304chrk3q5c" path="res://csom.webp" id="2_0g2eq"]
+[ext_resource type="Script" path="res://Control.gd" id="2_ihjli"]
+[ext_resource type="AudioStream" uid="uid://dv8soixxcrajc" path="res://badend.wav" id="4_m2v6c"]
+
+[sub_resource type="Animation" id="Animation_jogjk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Control/RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_l0qi4"]
+resource_name = "text"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Control/RichTextLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x1lig"]
+_data = {
+"RESET": SubResource("Animation_jogjk"),
+"text": SubResource("Animation_l0qi4")
+}
+
+[node name="Actual Gameplay" type="Node2D"]
+
+[node name="VavrS+" type="Sprite2D" parent="."]
+position = Vector2(630, 374)
+scale = Vector2(3.88968, 3.8285)
+texture = ExtResource("1_nyicu")
+
+[node name="Vavr" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(628.5, 324.5)
+scale = Vector2(2.12969, 1.40142)
+texture = ExtResource("2_0g2eq")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_ihjli")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 468.0
+offset_right = 1121.0
+offset_bottom = 691.0
+color = Color(0.517647, 0.517647, 0.517647, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 522.0
+offset_right = 1084.0
+offset_bottom = 707.0
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "doin your mom
+this is test text to test if i am an actual programmer"
+scroll_following = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/RichTextLabel"]
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_x1lig")
+}
+
+[node name="Timer" type="Timer" parent="Control"]
+one_shot = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 477.0
+offset_right = 1087.0
+offset_bottom = 662.0
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "NAME"
+scroll_following = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/RichTextLabel2"]
+root_node = NodePath("")
+libraries = {
+"": SubResource("AnimationLibrary_x1lig")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(630, 374)
+scale = Vector2(3.88968, 3.8285)
+stream = ExtResource("4_m2v6c")
+autoplay = true
+
+[connection signal="timeout" from="Control/Timer" to="Control" method="_on_timer_timeout"]

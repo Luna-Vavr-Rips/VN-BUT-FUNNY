@@ -1,0 +1,29 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="[V]isual [N]ovel"
+config/description="[V]isual [N]ovel"
+run/main_scene="res://fake titlescreen.tscn"
+config/features=PackedStringArray("4.0", "Forward Plus")
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/image="res://visual_novel_cov1er.png"
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)
